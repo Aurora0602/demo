@@ -1,1 +1,33 @@
+#服务器端口号
+server:
+  port: 80
+
+spring:
+  #日期格式设置
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  #数据源设置
+  datasource:
+    #jdbc连接配置
+    username: "root"
+    password: "0602"
+    url: "jdbc:mysql://localhost:3306/demo4gp?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC"
+    driverClassName: com.mysql.cj.jdbc.Driver
+  devtools:
+    restart:
+      enabled: true  #设置开启热部署
+      additional-paths: src/main/java #重启目录
+      exclude: src/main/resources/static #排除目录
+    freemarker:
+      cache: false    #页面不加载缓存，修改即时生效
+mybatis:
+  configuration:
+    #开启驼峰命名转换
+    map-underscore-to-camel-case: true
+
+#showSql
+logging:
+  level:
+    com.zhangheng.demo.dao: debug
 

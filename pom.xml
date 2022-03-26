@@ -35,6 +35,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
+<!--            <version>5.1.47</version>-->
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -55,9 +56,15 @@
         </dependency>
         <!--Page-helper-->
         <dependency>
-            <groupId>com.github.pagehelper</groupId>
+            <groupId>com.GitHub.pagehelper</groupId>
             <artifactId>pagehelper-spring-boot-starter</artifactId>
             <version>1.4.1</version>
+        </dependency>
+        <!--JWT-->
+        <dependency>
+            <groupId>com.auth0</groupId>
+            <artifactId>java-jwt</artifactId>
+            <version>3.8.2</version>
         </dependency>
     </dependencies>
 
@@ -67,6 +74,8 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
+                    <fork>true</fork>
+                    <addResources>true</addResources>
                     <excludes>
                         <exclude>
                             <groupId>org.projectlombok</groupId>
