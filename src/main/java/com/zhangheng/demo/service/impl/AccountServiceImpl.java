@@ -78,7 +78,7 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public Account update(Account account) {
         this.accountDao.update(account);
-        return this.queryById(account.getAccountId());
+        return this.queryById(account.getAccount_id());
     }
 
     /**

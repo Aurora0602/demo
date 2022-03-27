@@ -9,17 +9,23 @@ import com.zhangheng.demo.util.Result;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.annotation.WebInitParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.List;
 
-@WebFilter("*")
+@WebFilter(urlPatterns = "*",initParams = {@WebInitParam(name = "paths",value = "check,login,index")})
 public class JWTFilter implements Filter {
+    List<String> pathList=null;
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         //可以扩展多个不需要验证页面地址。
-        Filter.super.init(filterConfig);
+//        Filter.super.init(filterConfig);
+        pathList= Arrays.asList(filterConfig.getInitParameter("paths").split(","));
     }
 
     @Override

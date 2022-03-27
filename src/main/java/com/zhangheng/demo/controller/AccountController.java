@@ -40,7 +40,7 @@ public class AccountController {
 
     @GetMapping("one")
     public String one(Account account){
-        Account retAccount=accountService.queryById(account.getAccountId());
+        Account retAccount=accountService.queryById(account.getAccount_id());
         if (retAccount != null) {
             return "true";
         } else {
@@ -54,8 +54,8 @@ public class AccountController {
         Account retAccount = accountService.checkAccount(account);//签发token
         if (retAccount != null) {
             String token = JWT.create()
-                    .withClaim("userId", retAccount.getAccountId())
-                    .withClaim("userName", retAccount.getAccountName())
+                    .withClaim("userId", retAccount.getAccount_id())
+                    .withClaim("userName", retAccount.getAccount_name())
                     .withExpiresAt(new Date(System.currentTimeMillis() + 1000*60*60))
                     .sign(Algorithm.HMAC256("david"));
             return Result.success(token);

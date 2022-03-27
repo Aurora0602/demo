@@ -22,41 +22,73 @@ public class Account implements Serializable {
      * 密码
      */
     private String account_password;
-    
-    private String user_level;
 
-
-    public Integer getAccountId() {
+    public Integer getAccount_id() {
         return account_id;
     }
 
-    public void setAccountId(Integer accountId) {
-        this.account_id = accountId;
+    public void setAccount_id(Integer account_id) {
+        this.account_id = account_id;
     }
 
-    public String getAccountName() {
+    public String getAccount_name() {
         return account_name;
     }
 
-    public void setAccountName(String accountName) {
-        this.account_name = accountName;
+    public void setAccount_name(String account_name) {
+        this.account_name = account_name;
     }
 
-    public String getAccountPassword() {
+    public String getAccount_password() {
         return account_password;
     }
 
-    public void setAccountPassword(String accountPassword) {
-        this.account_password = accountPassword;
+    public void setAccount_password(String account_password) {
+        this.account_password = account_password;
     }
 
-    public String getUserLevel() {
+    public String getUser_level() {
         return user_level;
     }
 
-    public void setUserLevel(String userLevel) {
-        this.user_level = userLevel;
+    public void setUser_level(String user_level) {
+        this.user_level = user_level;
     }
+
+    private String user_level;
+
+
+//    public Integer getAccountId() {
+//        return account_id;
+//    }
+//
+//    public void setAccountId(Integer accountId) {
+//        this.account_id = accountId;
+//    }
+//
+//    public String getAccountName() {
+//        return account_name;
+//    }
+//
+//    public void setAccountName(String accountName) {
+//        this.account_name = accountName;
+//    }
+//
+//    public String getAccountPassword() {
+//        return account_password;
+//    }
+//
+//    public void setAccountPassword(String accountPassword) {
+//        this.account_password = accountPassword;
+//    }
+//
+//    public String getUserLevel() {
+//        return user_level;
+//    }
+//
+//    public void setUserLevel(String userLevel) {
+//        this.user_level = userLevel;
+//    }
 
 }
 
