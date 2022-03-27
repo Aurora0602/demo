@@ -18,7 +18,7 @@ import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
 
-@WebFilter(urlPatterns = "*",initParams = {@WebInitParam(name = "paths",value = "check,login,index")})
+@WebFilter(urlPatterns = "*",initParams = {@WebInitParam(name = "paths",value = "check,login,index")})//value是不需要验证的
 public class JWTFilter implements Filter {
     List<String> pathList=null;
     @Override
@@ -53,17 +53,19 @@ public class JWTFilter implements Filter {
             error = Result.error(102, "token验证失败，请重新登录！");//token错误，跳转到登录页。
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            if (error != null) {
+                //验证失败，向前端发送错误信息。
+                HttpServletResponse response = (HttpServletResponse) servletResponse;
+                response.setContentType("text/html; charset=utf-8");
+                PrintWriter out = response.getWriter();
+                out.println(error);
+                out.close();
+            } else {
+                //通过过滤器，进入controller。
+                filterChain.doFilter(servletRequest, servletResponse);
+            }
         }
-        if (error != null) {
-            //验证失败，向前端发送错误信息。
-            HttpServletResponse response = (HttpServletResponse) servletResponse;
-            response.setContentType("text/html; charset=utf-8");
-            PrintWriter out = response.getWriter();
-            out.println(error);
-            out.close();
-        } else {
-            //通过过滤器，进入controller。
-            filterChain.doFilter(servletRequest, servletResponse);
-        }
+
     }
 }

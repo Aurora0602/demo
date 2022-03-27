@@ -27,12 +27,12 @@ public class AccountServiceImpl implements AccountService {
     /**
      * 通过ID查询单条数据
      *
-     * @param accountId 主键
+     * @param account_id 主键
      * @return 实例对象
      */
     @Override
-    public Account queryById(Integer accountId) {
-        return this.accountDao.queryById(accountId);
+    public Account queryByAccount_id(Integer account_id) {
+        return this.accountDao.queryByAccount_id(account_id);
     }
 
     /**
@@ -78,7 +78,7 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public Account update(Account account) {
         this.accountDao.update(account);
-        return this.queryById(account.getAccount_id());
+        return this.queryByAccount_id(account.getAccount_id());
     }
 
     /**

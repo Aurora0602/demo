@@ -1,5 +1,7 @@
 package com.zhangheng.demo.entity;
 
+import lombok.Data;
+
 import java.io.Serializable;
 
 /**
@@ -8,6 +10,7 @@ import java.io.Serializable;
  * @author zhangheng
  * @since 2022-03-24 14:14:25
  */
+@Data
 public class Account implements Serializable {
     private static final long serialVersionUID = 531317742481606313L;
     /**
@@ -22,6 +25,10 @@ public class Account implements Serializable {
      * 密码
      */
     private String account_password;
+    /**
+     * 用户等级
+     */
+    private String user_level;
 
     public Integer getAccount_id() {
         return account_id;
@@ -55,40 +62,7 @@ public class Account implements Serializable {
         this.user_level = user_level;
     }
 
-    private String user_level;
 
-
-//    public Integer getAccountId() {
-//        return account_id;
-//    }
-//
-//    public void setAccountId(Integer accountId) {
-//        this.account_id = accountId;
-//    }
-//
-//    public String getAccountName() {
-//        return account_name;
-//    }
-//
-//    public void setAccountName(String accountName) {
-//        this.account_name = accountName;
-//    }
-//
-//    public String getAccountPassword() {
-//        return account_password;
-//    }
-//
-//    public void setAccountPassword(String accountPassword) {
-//        this.account_password = accountPassword;
-//    }
-//
-//    public String getUserLevel() {
-//        return user_level;
-//    }
-//
-//    public void setUserLevel(String userLevel) {
-//        this.user_level = userLevel;
-//    }
 
 }
 

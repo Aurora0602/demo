@@ -24,7 +24,7 @@ public interface AccountService {
      * @param accountId 主键
      * @return 实例对象
      */
-    Account queryById(Integer accountId);
+    Account queryByAccount_id(Integer accountId);
 
     /**
      * 查询多条数据

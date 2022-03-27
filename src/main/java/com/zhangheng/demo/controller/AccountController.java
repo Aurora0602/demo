@@ -26,31 +26,30 @@ public class AccountController {
     @Resource
     private AccountService accountService;
 
-//
-//    /**
-//     * 通过主键查询单条数据
-//     *
-//     * @param id 主键
-//     * @return 单条数据
-//     */
-//    @GetMapping("selectOne")
-//    public Account selectOne(@RequestParam(defaultValue = "1") Integer id) {
-//        return this.accountService.queryById(id);
-//    }
 
-    @GetMapping("one")
-    public String one(Account account){
-        Account retAccount=accountService.queryById(account.getAccount_id());
-        if (retAccount != null) {
-            return "true";
-        } else {
-            return "false";
-        }
+    /**
+     * 通过主键查询单条数据
+     *
+     * @param account_id 主键
+     * @return 单条数据
+     */
+    @GetMapping(value = "selectOne",produces = "application/json;charset=UTF-8" )
+    public @ResponseBody Account selectOne(@RequestParam(defaultValue = "1") Integer account_id) {
+        return this.accountService.queryByAccount_id(account_id);
     }
+
+//    @GetMapping("one")
+//    public String one(Account account){
+//        Account retAccount=accountService.queryById(account.getAccount_id());
+//        if (retAccount != null) {
+//            return "true";
+//        } else {
+//            return "false";
+//        }
+//    }
 
     @PostMapping("check")
     public Result check(Account account) {
-//        account.setAccountId(1);
         Account retAccount = accountService.checkAccount(account);//签发token
         if (retAccount != null) {
             String token = JWT.create()

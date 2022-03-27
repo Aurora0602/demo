@@ -15,12 +15,7 @@ import java.util.List;
 @Mapper
 public interface AccountDao {
 
-    @Select("select * from account where account_id like #{account_id}")//#{}里面是实体类的属性
-//    @Select("<script>" +
-//            "select * from account " +
-//            "<where>account_name=#{account_name}  and account_password = #{account_password} </where>" +
-//            "</script>")
-//    @Select("select * from account where #{account_id} like account_id")
+    @Select("select * from account where account_name = #{account_name} and account_password = #{account_password}")//#{}里面是实体类的属性
     @Results({
             @Result(column = "account_id", property = "account_id", jdbcType = JdbcType.INTEGER),
             @Result(column = "account_name", property = "account_name", jdbcType = JdbcType.VARCHAR),
@@ -31,11 +26,11 @@ public interface AccountDao {
     /**
      * 通过ID查询单条数据
      *
-     * @param accountId 主键
+     * @param account_id 主键
      * @return 实例对象
      */
-    @Select("select * from account where account_id = #{accountId}")
-    Account queryById(Integer accountId);
+    @Select("select * from account where account_id = #{account_id}")
+    Account queryByAccount_id(Integer account_id);
 
     /**
      * 查询指定行数据
