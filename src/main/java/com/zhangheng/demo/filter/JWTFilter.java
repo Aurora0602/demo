@@ -25,7 +25,7 @@ public class JWTFilter implements Filter {
     public void init(FilterConfig filterConfig) throws ServletException {
         //可以扩展多个不需要验证页面地址。
 //        Filter.super.init(filterConfig);
-        pathList= Arrays.asList(filterConfig.getInitParameter("paths").split(","));
+        pathList= Arrays.asList(filterConfig.getInitParameter("paths").split(","));// 获取不需要过滤的URLs，可以直接访问的URLs
     }
 
     @Override

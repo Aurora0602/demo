@@ -35,6 +35,7 @@ public class AccountController {
      */
     @GetMapping(value = "selectOne",produces = "application/json;charset=UTF-8" )
     public @ResponseBody Account selectOne(@RequestParam(defaultValue = "1") Integer account_id) {
+        System.out.println(this.accountService.queryByAccount_id(account_id)+"1");
         return this.accountService.queryByAccount_id(account_id);
     }
 
@@ -59,7 +60,7 @@ public class AccountController {
                     .sign(Algorithm.HMAC256("david"));
             return Result.success(token);
         }else{
-            return Result.success("false");
+            return Result.fail("用户名或密码错误！");
         }
     }
 

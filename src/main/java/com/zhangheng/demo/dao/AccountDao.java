@@ -19,7 +19,8 @@ public interface AccountDao {
     @Results({
             @Result(column = "account_id", property = "account_id", jdbcType = JdbcType.INTEGER),
             @Result(column = "account_name", property = "account_name", jdbcType = JdbcType.VARCHAR),
-            @Result(column = "account_password", property = "account_password", jdbcType = JdbcType.VARCHAR)
+            @Result(column = "account_password", property = "account_password", jdbcType = JdbcType.VARCHAR),
+            @Result(column = "user_level",property = "user_level",jdbcType = JdbcType.VARCHAR)
     })
     Account checkAccount(Account account);
 
@@ -30,6 +31,12 @@ public interface AccountDao {
      * @return 实例对象
      */
     @Select("select * from account where account_id = #{account_id}")
+    @Results({
+            @Result(column = "account_id", property = "account_id", jdbcType = JdbcType.INTEGER),
+            @Result(column = "account_name", property = "account_name", jdbcType = JdbcType.VARCHAR),
+            @Result(column = "account_password", property = "account_password", jdbcType = JdbcType.VARCHAR),
+            @Result(column = "user_level",property = "user_level",jdbcType = JdbcType.VARCHAR)
+    })
     Account queryByAccount_id(Integer account_id);
 
     /**

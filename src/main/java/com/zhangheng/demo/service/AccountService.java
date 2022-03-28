@@ -21,10 +21,10 @@ public interface AccountService {
     /**
      * 通过ID查询单条数据
      *
-     * @param accountId 主键
+     * @param account_id 主键
      * @return 实例对象
      */
-    Account queryByAccount_id(Integer accountId);
+    Account queryByAccount_id(Integer account_id);
 
     /**
      * 查询多条数据
