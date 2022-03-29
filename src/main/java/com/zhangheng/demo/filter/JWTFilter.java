@@ -14,18 +14,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
 
-@WebFilter(urlPatterns = "*",initParams = {@WebInitParam(name = "paths",value = "check,login,index")})//value是不需要验证的
+//@WebFilter(urlPatterns = "*", initParams = {@WebInitParam(name = "paths", value = "check,login.html,index，loginTest.html")})
+//value是不需要验证的
 public class JWTFilter implements Filter {
-    List<String> pathList=null;
+    List<String> pathList = null;
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         //可以扩展多个不需要验证页面地址。
 //        Filter.super.init(filterConfig);
-        pathList= Arrays.asList(filterConfig.getInitParameter("paths").split(","));// 获取不需要过滤的URLs，可以直接访问的URLs
+        pathList = Arrays.asList(filterConfig.getInitParameter("paths").split(","));// 获取不需要过滤的URLs，可以直接访问的URLs
     }
 
     @Override
@@ -53,7 +54,7 @@ public class JWTFilter implements Filter {
             error = Result.error(102, "token验证失败，请重新登录！");//token错误，跳转到登录页。
         } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             if (error != null) {
                 //验证失败，向前端发送错误信息。
                 HttpServletResponse response = (HttpServletResponse) servletResponse;

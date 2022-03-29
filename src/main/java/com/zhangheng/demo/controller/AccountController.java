@@ -3,6 +3,7 @@ package com.zhangheng.demo.controller;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.zhangheng.demo.entity.Account;
+import com.zhangheng.demo.filter.JWTFilter;
 import com.zhangheng.demo.service.AccountService;
 import com.zhangheng.demo.util.Result;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.OAuth2ResourceServerProperties;
@@ -33,21 +34,11 @@ public class AccountController {
      * @param account_id 主键
      * @return 单条数据
      */
-    @GetMapping(value = "selectOne",produces = "application/json;charset=UTF-8" )
-    public @ResponseBody Account selectOne(@RequestParam(defaultValue = "1") Integer account_id) {
+    @GetMapping("selectOne")
+    public Account selectOne(@RequestParam(defaultValue = "1") Integer account_id) {
         System.out.println(this.accountService.queryByAccount_id(account_id)+"1");
         return this.accountService.queryByAccount_id(account_id);
     }
-
-//    @GetMapping("one")
-//    public String one(Account account){
-//        Account retAccount=accountService.queryById(account.getAccount_id());
-//        if (retAccount != null) {
-//            return "true";
-//        } else {
-//            return "false";
-//        }
-//    }
 
     @PostMapping("check")
     public Result check(Account account) {
@@ -55,7 +46,7 @@ public class AccountController {
         if (retAccount != null) {
             String token = JWT.create()
                     .withClaim("userId", retAccount.getAccount_id())
-                    .withClaim("userName", retAccount.getAccount_name())
+                    .withClaim("UserName", retAccount.getAccount_name())
                     .withExpiresAt(new Date(System.currentTimeMillis() + 1000*60*60))
                     .sign(Algorithm.HMAC256("david"));
             return Result.success(token);

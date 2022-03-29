@@ -1,48 +1,68 @@
 <!DOCTYPE html>
-<html>
+<html long="en">
 <head>
-	<title>登录页面</title>
-	<link rel="stylesheet" type="text/css" href="css/style_login.css">
-	<link rel="icon" href="img/favicon_login.ico">
-	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
-	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	
+    <title>登录页面</title>
+    <link rel="stylesheet" type="text/css" href="css/style_login.css">
+    <link rel="icon" href="img/favicon_login.ico">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script type="text/javascript" src="js/main_login.js"></script>
+    <script src="js/jquery-3.6.0.js"></script>
+    <script src="js/axios.min.js"></script>
+    <script>
+        $(function () {
+            $("#submitBtn").click(function () {
+                $.post("/check", {
+                    account_name: $("#account_name").val(),
+                    account_password: $("#account_password").val()
+                }, function (ret) {
+                    console.log(ret);
+                    if (ret.message == "fail") {
+                        alert(ret.data)
+                    } else {
+                        sessionStorage.setItem("token", ret.data);
+                        location.href = "main.html";
+                    }
+                })
+            })
+        })
+    </script>
 </head>
 <body>
-	<img class="wave" src="img/wave.png">
-	<div class="container">
-		<div class="img">
-			<img src="img/bg.svg">
-		</div>
-		<div class="login-content">
-			<form action="login.html">
-				<img style="border: 1px solid #d5d5d5;border-radius: 8px;" src="img/logo_login.svg">
-				<h2 class="title" style="font-size: 36px;">若依-AiDex Sharp</h2>
-           		<div class="input-div one">
-           		   <div class="i">
-           		   		<i class="fas fa-user"></i>
-           		   </div>
-           		   <div class="div">
-           		   		<h5>用户名</h5>
-           		   		<input type="text" class="input">
-           		   </div>
-           		</div>
-           		<div class="input-div pass">
-           		   <div class="i"> 
-           		    	<i class="fas fa-lock"></i>
-           		   </div>
-           		   <div class="div">
-           		    	<h5>密码</h5>
-           		    	<input type="password" class="input">
-            	   </div>
-            	</div>
-            	<a href="#">忘记密码?</a>
-            	<input type="submit" class="btn" value="登录">
-            </form>
-        </div>
+<img class="wave" src="img/wave.png">
+<div class="container">
+    <div class="img">
+        <img src="img/bg.svg">
     </div>
-    <script type="text/javascript" src="js/main_login.js"></script>
+    <div class="login-content">
+        <form action="login.html">
+            <img style="border: 1px solid #d5d5d5;border-radius: 8px;" src="img/logo_login.svg">
+            <h2 class="title" style="font-size: 36px;">用户登录</h2>
+            <div class="input-div one">
+                <div class="i">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="div">
+                    <h5>用户名</h5>
+                    <input type="text" id="account_name" class="input">
+                </div>
+            </div>
+            <div class="input-div pass">
+                <div class="i">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <div class="div">
+                    <h5>密码</h5>
+                    <input type="password" id="account_password" class="input">
+                </div>
+            </div>
+            <a href="#">忘记密码?</a>
+            <input type="submit" id="submitBtn" class="btn" value="登录">
+        </form>
+    </div>
+</div>
+
 </body>
 </html>

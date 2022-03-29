@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="js/jquery-3.6.0.min.js"></script>
+<script>
+    $(function(){
+        $.ajax({
+            //请求地址
+            url: "/selectOne",
+            //请求方式
+            type: "get",
+            //提交数据-json格式的字符串。
+            data: {id:2},
+            //返回值类型
+            dataType: "json",
+            //token头信息
+            beforeSend:function(request) {
+                if(sessionStorage.getItem("token") == null){
+                    alert("请先登录！")
+                    location.href = "login.html"
+                }
+                request.setRequestHeader("Authorization", "Bearer " + sessionStorage.getItem("token"));
+            },
+            //请求成功
+            success: function (result) {
+                console.log(result)
+                alert("登录成功")
+            }
+        })
+    })
+</script>
+</body>
+</html>
